@@ -38,10 +38,8 @@
     });
     
     document.addEventListener('keyup', function (event) {
-        //if (event.code != 'CapsLock') {
             let activeKey = document.querySelector('.'+event.code);
             activeKey.classList.remove('active');   
-        //}
     });
     
     document.addEventListener('mousedown', (e) => {
