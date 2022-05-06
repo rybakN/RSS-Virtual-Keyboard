@@ -48,6 +48,54 @@
         }
     }
 
+    export function shiftDown (e) {
+        let CapsLock = document.querySelector(".CapsLock");
+        if ((e.code == "ShiftLeft" || e.code == "ShiftRight") && !CapsLock.classList.contains('active')) {
+            let shift = document.querySelectorAll(".eng");
+            shift.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.children[0].classList.add('hidden');
+                    element.children[1].classList.remove('hidden');
+                } else {
+                    element.nextElementSibling.firstElementChild.classList.add("hidden");
+                    element.nextElementSibling.children[1].classList.remove("hidden");
+                }
+            })
+        }
+    }
+
+    export function shiftUp (e) {
+        let CapsLock = document.querySelector(".CapsLock");
+        if ((e.code == "ShiftLeft" || e.code == "ShiftRight") && !CapsLock.classList.contains('active')) {
+            let shift = document.querySelectorAll(".eng");
+            shift.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.children[0].classList.remove('hidden');
+                    element.children[1].classList.add('hidden');
+                } else {
+                    element.nextElementSibling.firstElementChild.classList.remove("hidden");
+                    element.nextElementSibling.children[1].classList.add("hidden");
+                }
+            })
+        }
+    }
+
+    export function CapsLock (e) {
+        let CapsLock = document.querySelector(".CapsLock");
+        if ((e.code == "ShiftLeft" || e.code == "ShiftRight") && !CapsLock.classList.contains('active')) {
+            let shift = document.querySelectorAll(".eng");
+            shift.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.children[0].classList.remove('hidden');
+                    element.children[1].classList.add('hidden');
+                } else {
+                    element.nextElementSibling.firstElementChild.classList.remove("hidden");
+                    element.nextElementSibling.children[1].classList.add("hidden");
+                }
+            })
+        }
+    }
+
 
 
 
