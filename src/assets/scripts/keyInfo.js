@@ -1,67 +1,31 @@
+    export function keydown (e) {
+        let key = document.querySelector('.'+e.code);
+        key.classList.add("active");
+    }
 
+    export function keyup (e) {
+        let key = document.querySelector('.'+e.code);
+        key.classList.remove("active");
+    }
 
-
-    document.addEventListener('keydown', function (event) {
-        let activeKey = document.querySelector('.'+event.code);
-        if (event.code == "CapsLock" || event.code == "ShiftRight" || event.code == "ShiftLeft") {
-            let caseDown = document.querySelectorAll(".caseDown");
-            caseDown.forEach(element => {
-                if (!element.classList.contains("hidden")) {
-                    element.classList.add("hidden");
-                    element.nextElementSibling.classList.remove("hidden");
-                }
-            });
-        }
-
-        if (event.ctrlKey && event.code == 'AltLeft') {
-            console.log("ZALUpA");
-            let langKey = document.querySelectorAll(".eng");
-            langKey.forEach(element => {
-                if (!element.classList.contains("hidden")) {
-                    element.classList.add("hidden");
-                    element.nextElementSibling.classList.remove("hidden");
-                    let caseDown = document.querySelectorAll(".caseDown");
-                    caseDown.forEach(element => {
-                        if (!element.classList.contains("hidden")) {
-                            element.classList.add("hidden");
-                        } else {
-                            element.classList.remove("hidden");
-                        }
-                    });
-                }
-            })
-        }
-
-        activeKey.classList.add('active');
-        let textarea = document.querySelector(".wrapper__textarea");
-        textarea.value += event.key;
-    });
+    export function mousedown (e) {
+        let key = e.path[2];
+            if (key.classList.contains("key")) {
+                key.classList.add('active');
+            } else if (e.target.classList.contains("key")) {
+                e.target.classList.add('active');
+            } else console.log("ghbdtn");
+    }
     
-    document.addEventListener('keyup', function (event) {
-            let activeKey = document.querySelector('.'+event.code);
-            activeKey.classList.remove('active');   
-    });
     
-    document.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('key') || e.target.closest(".eng") || e.target.closest(".rus")) {
-            e.target.classList.add('active');
-            let textarea = document.querySelector(".wrapper__textarea");
-            textarea.value += 'asss';
-        }
-    });
-    
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('key')) {
-            e.target.classList.remove('active');   
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        let activeKey = document.querySelector('.'+event.code);
-        if (e.target.classList.contains('key')) {
-            e.target.classList.remove('active');   
-        }
-    });
+    export function click (e) {
+        let key = e.path[2];
+            if (key.classList.contains("key")) {
+                key.classList.remove('active');   
+            } else if (e.target.classList.contains("key")) {
+                e.target.classList.remove('active');
+            }
+    }
 
 
 

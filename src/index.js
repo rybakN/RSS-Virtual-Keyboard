@@ -1,5 +1,5 @@
 import {createKeyboard} from "./assets/scripts/createKeyboard";
-import {keyInfo} from "./assets/scripts/keyInfo";
+import {click, mousedown, keydown, keyup} from "./assets/scripts/keyInfo";
 import {addClass} from "./assets/scripts/addClass";
 
 import "../src/assets/CSS/style.css";
@@ -7,4 +7,7 @@ import "../src/assets/CSS/style.scss";
 
 //createInput();
 createKeyboard();
-//keyInfo();
+document.addEventListener('mousedown', (e) => mousedown(e));
+document.addEventListener('click', (e) => click(e));
+document.addEventListener('keydown', (e) => keydown(e));
+document.addEventListener('keyup', (e) => keyup(e));
