@@ -27,6 +27,27 @@
             }
     }
 
+    export function lang (e) {
+        if (e.ctrlKey && e.code == 'AltLeft') {
+            let lang = document.querySelectorAll(".eng");
+            console.log(lang);
+            lang.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.classList.add('hidden');
+                    element.nextElementSibling.classList.remove("hidden");
+                    element.nextElementSibling.firstElementChild.classList.remove("hidden");
+                    for (let i=0; i<4; i++) { element.children[i].classList.add('hidden') }
+                } else {
+                    element.classList.remove('hidden');
+                    element.firstElementChild.classList.remove('hidden');
+                    element.nextElementSibling.classList.add("hidden");
+                    for (let i=0; i<4; i++) { element.nextElementSibling.children[i].classList.add('hidden') }
+                }
+            })
+
+        }
+    }
+
 
 
 
