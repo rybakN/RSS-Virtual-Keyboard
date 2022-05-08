@@ -193,6 +193,17 @@
                 })
             }
             
+        } else if (!caps.classList.contains("active") && (key.classList.contains("ShiftLeft") || key.classList.contains("ShiftRight"))) {
+            let shift = document.querySelectorAll(".eng");
+            shift.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.children[0].classList.add('hidden');
+                    element.children[1].classList.remove('hidden');
+                } else {
+                    element.nextElementSibling.firstElementChild.classList.add("hidden");
+                    element.nextElementSibling.children[1].classList.remove("hidden");
+                }
+            })
         }
     }
 
@@ -227,6 +238,17 @@
                 })
             }
             
+        } else if (!caps.classList.contains("active") && (key.classList.contains("ShiftLeft") || key.classList.contains("ShiftRight"))) {
+            let shift = document.querySelectorAll(".eng");
+            shift.forEach(element => {
+                if (!element.classList.contains('hidden')) {
+                    element.children[0].classList.remove('hidden');
+                    element.children[1].classList.add('hidden');
+                } else {
+                    element.nextElementSibling.firstElementChild.classList.remove("hidden");
+                    element.nextElementSibling.children[1].classList.add("hidden");
+                }
+            })
         }
     }
 
