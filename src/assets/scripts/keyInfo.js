@@ -29,7 +29,6 @@
 
     export function mousedown (e) {
         let key = e.path[2];
-        console.log(e);
         if (key.classList.contains("CapsLock") && key.classList.contains("key")) {
             if (key.classList.contains('active')) {
                 key.classList.remove('active');
@@ -90,8 +89,6 @@
                 })
                 CapsLockUp();
             }
-            
-
         }
     }
 
