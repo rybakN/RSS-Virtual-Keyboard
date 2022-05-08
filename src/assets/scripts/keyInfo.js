@@ -20,6 +20,7 @@
 
     export function mousedown (e) {
         let key = e.path[2];
+        console.log(e);
         if (key.classList.contains("CapsLock") && key.classList.contains("key")) {
             if (key.classList.contains('active')) {
                 key.classList.remove('active');
@@ -48,7 +49,7 @@
     export function lang (e) {
         if (e.ctrlKey && e.code == 'AltLeft') {
             let lang = document.querySelectorAll(".eng");
-            console.log(lang);
+            if (document.querySelector(".CapsLock").classList.contains("active")) {document.querySelector(".CapsLock").classList.remove("active")};
             lang.forEach(element => {
                 if (!element.classList.contains('hidden')) {
                     element.classList.add('hidden');
@@ -124,8 +125,6 @@
 
     function CapsLockUp () {
         let lang = document.querySelector(".KeyQ");
-        console.log(lang);
-        console.log(lang.firstElementChild);
         if (!lang.firstElementChild.classList.contains('hidden')) {
             eng.forEach(element => {
                 let capsKey = document.querySelector('.'+element);
@@ -163,13 +162,78 @@
         
     }
 
+    export function mouseShiftDown (e) {
+        let key = e.path[2];
+        let caps = document.querySelector(".CapsLock");
+        if (e.target.classList.contains("key")) {
+            key = e.target;
+        }
+        if (caps.classList.contains("active") && (key.classList.contains("ShiftLeft") || key.classList.contains("ShiftRight"))) {
+            if (!key.firstElementChild.classList.contains("hidden")) {
+                eng.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.firstElementChild.children[0].classList.remove('hidden');
+                    capsKey.firstElementChild.children[1].classList.add('hidden');   
+                })
+                engShift.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.firstElementChild.children[0].classList.add('hidden');
+                    capsKey.firstElementChild.children[1].classList.remove('hidden');   
+                })
+            } else {
+                ru.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.lastElementChild.children[0].classList.remove('hidden');
+                    capsKey.lastElementChild.children[1].classList.add('hidden');   
+                })
+                ruShift.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.lastElementChild.children[0].classList.add('hidden');
+                    capsKey.lastElementChild.children[1].classList.remove('hidden');   
+                })
+            }
+            
+        }
+    }
+
+    export function mouseShiftClick (e) {
+        let key = e.path[2];
+        let caps = document.querySelector(".CapsLock");
+        if (e.target.classList.contains("key")) {
+            key = e.target;
+        }
+        if (caps.classList.contains("active") && (key.classList.contains("ShiftLeft") || key.classList.contains("ShiftRight"))) {
+            if (!key.firstElementChild.classList.contains("hidden")) {
+                eng.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.firstElementChild.children[0].classList.add('hidden');
+                    capsKey.firstElementChild.children[1].classList.remove('hidden');   
+                })
+                engShift.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.firstElementChild.children[0].classList.remove('hidden');
+                    capsKey.firstElementChild.children[1].classList.add('hidden');   
+                })
+            } else {
+                ru.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.lastElementChild.children[0].classList.add('hidden');
+                    capsKey.lastElementChild.children[1].classList.remove('hidden');   
+                })
+                ruShift.forEach(element => {
+                    let capsKey = document.querySelector('.'+element);
+                    capsKey.lastElementChild.children[0].classList.remove('hidden');
+                    capsKey.lastElementChild.children[1].classList.add('hidden');   
+                })
+            }
+            
+        }
+    }
+
+    
+
 
     const eng = ["KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM"];
     const ru = ["KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Period", "Comma", "Semicolon", "Quote", "BracketRight", "BracketLeft"];
-/*
-let CodeRow1 = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'];
-let CodeRow2 = ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Delete'];
-let CodeRow3 = ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Backslash', 'Enter'];
-let CodeRow4 = ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'];
-let CodeRow5 = ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
-*/
+    const engShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "BracketLeft", "BracketRight", "Semicolon", "Quote", "Backslash", "Comma", "Period", "Slash"];
+    const ruShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backslash", "Slash"];

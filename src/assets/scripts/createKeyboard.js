@@ -81,7 +81,7 @@ let content='';
 function createKeyboard () {
     content += `<div class="wrapper">
                 <h1 class="title">RSS-Virtual-Keyboard</h1>
-                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10"></textarea>`
+                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10" autofocus></textarea>`
     for (let i=0; i<5;i++) {
         content += `<div class="key-row">`;
         for (let j=0; j<keyboard[i].length; j++) {
