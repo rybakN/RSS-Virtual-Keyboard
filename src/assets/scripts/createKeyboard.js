@@ -1,4 +1,4 @@
-const keyboard = [
+export const keyboard = [
     [
         {code: 'Backquote', key1: '`', keyCode: 192, key2: '~', key3: 'ё', key4: 'Ё'}, 
         {code: 'Digit1', key1: '1', keyCode: 49, key2: '!', key3: '1', key4: '!'}, 
@@ -81,7 +81,7 @@ let content='';
 function createKeyboard () {
     content += `<div class="wrapper">
                 <h1 class="title">RSS-Virtual-Keyboard</h1>
-                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10" autofocus></textarea>`
+                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10" autofocus value=''></textarea>`
     for (let i=0; i<5;i++) {
         content += `<div class="key-row">`;
         for (let j=0; j<keyboard[i].length; j++) {
