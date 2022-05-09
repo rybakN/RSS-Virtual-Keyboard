@@ -7,8 +7,22 @@ export function stopInput(e) {
 }
 
 export function inputKeyboard (e) {
-    let contains = keyInput.includes(e.code);
-    let key = document.querySelector("."+e.code);
+    let keyCode;
+    if (e.type == "mousedown") {
+        let key = e.path[2].classList.contains("key");
+        if (key) {
+            let keyClass = e.path[2].classList.value.split(' ');
+            keyCode = keyClass[1];
+        } else if (e.target.classList.contains("key")) {
+            let keyClass = e.target.classList.value.split(' ');
+            keyCode = keyClass[1];
+        }
+    } else if (e.type == "keydown") {
+        keyCode = e.code;
+    }
+
+    let contains = keyInput.includes(keyCode);
+    let key = document.querySelector("."+keyCode);
     let lang = document.querySelector(".eng").classList.contains("hidden");
     let big = document.querySelector(".ShiftLeft").classList.contains("active") || document.querySelector(".ShiftRight").classList.contains("active") || document.querySelector(".CapsLock").classList.contains("active");
     let small = (document.querySelector(".ShiftLeft").classList.contains("active") || document.querySelector(".ShiftRight").classList.contains("active")) && document.querySelector(".CapsLock").classList.contains("active");
@@ -17,7 +31,7 @@ export function inputKeyboard (e) {
     if (!lang && !big && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key1);
                     document.getElementById("textarea").value = value.join("");
@@ -30,7 +44,7 @@ export function inputKeyboard (e) {
     } else if (!lang && big && !small && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key2);
                     document.getElementById("textarea").value = value.join("");
@@ -43,7 +57,7 @@ export function inputKeyboard (e) {
     } else if (!lang && small && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key1);
                     document.getElementById("textarea").value = value.join("");
@@ -56,7 +70,7 @@ export function inputKeyboard (e) {
     } else if (lang && !big && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key3);
                     document.getElementById("textarea").value = value.join("");
@@ -69,7 +83,7 @@ export function inputKeyboard (e) {
     } else if (lang && big && !small && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key4);
                     document.getElementById("textarea").value = value.join("");
@@ -82,7 +96,7 @@ export function inputKeyboard (e) {
     } else if (lang && small && contains) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
-                if (e.code == keyboard[i][j].code) {
+                if (keyCode == keyboard[i][j].code) {
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key3);
                     document.getElementById("textarea").value = value.join("");
@@ -92,14 +106,14 @@ export function inputKeyboard (e) {
                 }
             }
         }
-    } else if (e.code == "Space") {
+    } else if (keyCode == "Space") {
         let value = document.getElementById("textarea").value.split('');
         value.splice(count,0," ");
         document.getElementById("textarea").value = value.join("");
         count++;
         document.getElementById("textarea").selectionStart = count;
         document.getElementById("textarea").selectionEnd= count;
-    } else if (e.code == "Tab") {
+    } else if (keyCode == "Tab") {
         let value = document.getElementById("textarea").value.split('');
         for (let i=0; i<4; i++) {
             value.splice(count,0," ");
@@ -108,25 +122,24 @@ export function inputKeyboard (e) {
         }
         document.getElementById("textarea").selectionStart = count;
         document.getElementById("textarea").selectionEnd= count;
-    } else if (e.code == "Enter") {
+    } else if (keyCode == "Enter") {
         let value = document.getElementById("textarea").value.split('');
         value.splice(count,0,"\n");
         document.getElementById("textarea").value = value.join("");
         count++;
         document.getElementById("textarea").selectionStart = count;
         document.getElementById("textarea").selectionEnd= count;
-    } else if (e.code == "Backspace") {
+    } else if (keyCode == "Backspace") {
         let value = document.getElementById("textarea").value.split('');
         value.splice(count-1,1);
         document.getElementById("textarea").value = value.join("");
         count = (count > 0) ? count-1 : 0;
         document.getElementById("textarea").selectionStart = count;
         document.getElementById("textarea").selectionEnd= count;
-    } else if (e.code == "Delete") {
+    } else if (keyCode == "Delete") {
         let value = document.getElementById("textarea").value.split('');
         value.splice(count,1);
         document.getElementById("textarea").value = value.join("");
-        console.log(count);
         document.getElementById("textarea").selectionStart = count;
         document.getElementById("textarea").selectionEnd= count;
     }

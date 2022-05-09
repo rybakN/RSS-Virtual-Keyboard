@@ -1,6 +1,5 @@
 import {createKeyboard} from "./assets/scripts/createKeyboard";
 import {click, mousedown, keydown, keyup} from "./assets/scripts/keyInfo";
-import {addClass} from "./assets/scripts/addClass";
 import {stopInput} from "./assets/scripts/input";
 
 import "../src/assets/CSS/style.css";

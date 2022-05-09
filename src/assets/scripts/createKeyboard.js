@@ -78,35 +78,60 @@ export const keyboard = [
 const BODY = document.querySelector('body');
 let content='';
 
-function createKeyboard () {
+export function createKeyboard () {
     content += `<div class="wrapper">
                 <h1 class="title">RSS-Virtual-Keyboard</h1>
-                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10" autofocus value=''></textarea>`
-    for (let i=0; i<5;i++) {
-        content += `<div class="key-row">`;
-        for (let j=0; j<keyboard[i].length; j++) {
-            content +=`
-            <div class="key ${keyboard[i][j].code}">
-                <div class="eng">
-                    <span class="caseDown">${keyboard[i][j].key1}</span>
-                    <span class="caseUp hidden">${keyboard[i][j].key2}</span>
-                    <span class="caps hidden">${keyboard[i][j].key2}</span>
-                    <span class="shiftCaps hidden">${keyboard[i][j].key1}</span>
-                </div>
-                <div class="rus hidden">
-                    <span class="caseDown hidden">${keyboard[i][j].key3}</span>
-                    <span class="caseUp hidden">${keyboard[i][j].key4}</span>
-                    <span class="caps hidden">${keyboard[i][j].key4}</span>
-                    <span class="shiftCaps hidden">${keyboard[i][j].key3}</span>
-                </div>
-            </div>`;
+                <textarea class="wrapper__textarea textarea" id="textarea" cols="50" rows="10" value=''></textarea>`
+
+    if (localStorage.lang == 'eng' || localStorage.lang == undefined) {
+        localStorage.lang = 'eng';
+        for (let i=0; i<5;i++) {
+            content += `<div class="key-row">`;
+            for (let j=0; j<keyboard[i].length; j++) {
+                content +=`
+                <div class="key ${keyboard[i][j].code}">
+                    <div class="eng">
+                        <span class="caseDown">${keyboard[i][j].key1}</span>
+                        <span class="caseUp hidden">${keyboard[i][j].key2}</span>
+                        <span class="caps hidden">${keyboard[i][j].key2}</span>
+                        <span class="shiftCaps hidden">${keyboard[i][j].key1}</span>
+                    </div>
+                    <div class="rus hidden">
+                        <span class="caseDown hidden">${keyboard[i][j].key3}</span>
+                        <span class="caseUp hidden">${keyboard[i][j].key4}</span>
+                        <span class="caps hidden">${keyboard[i][j].key4}</span>
+                        <span class="shiftCaps hidden">${keyboard[i][j].key3}</span>
+                    </div>
+                </div>`;
+            };
+            content+= `</div>`;
         };
-        content+= `</div>`;
-    };
+    } else if (localStorage.lang == 'ru') {
+        localStorage.lang = 'ru';
+        for (let i=0; i<5;i++) {
+            content += `<div class="key-row">`;
+            for (let j=0; j<keyboard[i].length; j++) {
+                content +=`
+                <div class="key ${keyboard[i][j].code}">
+                    <div class="eng hidden">
+                        <span class="caseDown hidden">${keyboard[i][j].key1}</span>
+                        <span class="caseUp hidden">${keyboard[i][j].key2}</span>
+                        <span class="caps hidden">${keyboard[i][j].key2}</span>
+                        <span class="shiftCaps hidden">${keyboard[i][j].key1}</span>
+                    </div>
+                    <div class="rus">
+                        <span class="caseDown">${keyboard[i][j].key3}</span>
+                        <span class="caseUp hidden">${keyboard[i][j].key4}</span>
+                        <span class="caps hidden">${keyboard[i][j].key4}</span>
+                        <span class="shiftCaps hidden">${keyboard[i][j].key3}</span>
+                    </div>
+                </div>`;
+            };
+            content+= `</div>`;
+        };
+    }
     content += `<div class="system">Клавиатура создана в операционной системе Windows</div>
-    <div class="lang">Для переключения языка комбинация: левыe ctrl + alt</div>
+    <div class="lang">Для переключения языка комбинация: ctrl + alt</div>
 </div>`
     BODY.innerHTML += content; 
 };
-
-export {createKeyboard};
