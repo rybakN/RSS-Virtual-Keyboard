@@ -1,6 +1,6 @@
 import {keyboard} from "./createKeyboard";
 
-const keyInput = ['ArrowLeft', 'ArrowDown', "ArrowUp",'ArrowRight', "Tab","Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "BracketLeft", "BracketRight", "Semicolon", "Quote", "Backslash", "Comma", "Period", "Slash", "KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Period", "Comma", "Semicolon", "Quote", "BracketRight", "BracketLeft"];
+const keyInput = ['ArrowLeft', 'ArrowDown', "ArrowUp",'ArrowRight', "Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "BracketLeft", "BracketRight", "Semicolon", "Quote", "Backslash", "Comma", "Period", "Slash", "KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Period", "Comma", "Semicolon", "Quote", "BracketRight", "BracketLeft"];
 
 export function stopInput(e) {
     e.preventDefault();
@@ -18,14 +18,12 @@ export function inputKeyboard (e) {
         for (let i=0; i<keyboard.length; i++) {
             for (let j=0; j<keyboard[i].length; j++) {
                 if (e.code == keyboard[i][j].code) {
-                    if ()
                     let value = document.getElementById("textarea").value.split('');
                     value.splice(count,0,keyboard[i][j].key1);
                     document.getElementById("textarea").value = value.join("");
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
@@ -39,7 +37,6 @@ export function inputKeyboard (e) {
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
@@ -53,7 +50,6 @@ export function inputKeyboard (e) {
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
@@ -67,7 +63,6 @@ export function inputKeyboard (e) {
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
@@ -81,7 +76,6 @@ export function inputKeyboard (e) {
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
@@ -95,9 +89,45 @@ export function inputKeyboard (e) {
                     count++;
                     document.getElementById("textarea").selectionStart = count;
                     document.getElementById("textarea").selectionEnd= count;
-                    console.log(document.getElementById("textarea").selectionStart);
                 }
             }
         }
+    } else if (e.code == "Space") {
+        let value = document.getElementById("textarea").value.split('');
+        value.splice(count,0," ");
+        document.getElementById("textarea").value = value.join("");
+        count++;
+        document.getElementById("textarea").selectionStart = count;
+        document.getElementById("textarea").selectionEnd= count;
+    } else if (e.code == "Tab") {
+        let value = document.getElementById("textarea").value.split('');
+        for (let i=0; i<4; i++) {
+            value.splice(count,0," ");
+            document.getElementById("textarea").value = value.join("");
+            count++;
+        }
+        document.getElementById("textarea").selectionStart = count;
+        document.getElementById("textarea").selectionEnd= count;
+    } else if (e.code == "Enter") {
+        let value = document.getElementById("textarea").value.split('');
+        value.splice(count,0,"\n");
+        document.getElementById("textarea").value = value.join("");
+        count++;
+        document.getElementById("textarea").selectionStart = count;
+        document.getElementById("textarea").selectionEnd= count;
+    } else if (e.code == "Backspace") {
+        let value = document.getElementById("textarea").value.split('');
+        value.splice(count-1,1);
+        document.getElementById("textarea").value = value.join("");
+        count = (count > 0) ? count-1 : 0;
+        document.getElementById("textarea").selectionStart = count;
+        document.getElementById("textarea").selectionEnd= count;
+    } else if (e.code == "Delete") {
+        let value = document.getElementById("textarea").value.split('');
+        value.splice(count,1);
+        document.getElementById("textarea").value = value.join("");
+        console.log(count);
+        document.getElementById("textarea").selectionStart = count;
+        document.getElementById("textarea").selectionEnd= count;
     }
 }
