@@ -3,6 +3,8 @@
     const engShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "BracketLeft", "BracketRight", "Semicolon", "Quote", "Backslash", "Comma", "Period", "Slash"];
     const ruShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backslash", "Slash"];
     let lang = 'eng';
+
+    import {inputKeyboard} from "./input";
     
     export function keydown (e) {
         let key = document.querySelector('.'+e.code);
@@ -17,6 +19,7 @@
         } else { key.classList.add("active"); }
         shiftKeyDown (e);
         langSwitch (e);
+        inputKeyboard (e);
     }
 
     export function keyup (e) {
