@@ -1,10 +1,9 @@
-    const eng = ["KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM"];
-    const ru = ["Backquote", "KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Period", "Comma", "Semicolon", "Quote", "BracketRight", "BracketLeft"];
+    export const eng = ["KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM"];
+    export const ru = ["Backquote", "KeyQ", "KeyW", "KeyR", "KeyT", "KeyE", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "KeyL", "KeyK", "KeyJ", "KeyH", "KeyG", "KeyF", "KeyD", "KeyS", "KeyA", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Period", "Comma", "Semicolon", "Quote", "BracketRight", "BracketLeft"];
     const engShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "BracketLeft", "BracketRight", "Semicolon", "Quote", "Backslash", "Comma", "Period", "Slash"];
     const ruShift = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backslash", "Slash"];
-    let lang = 'eng';
 
-    import {inputKeyboard} from "./input";
+    import {inputKeyboard, log} from "./input";
     
     export function keydown (e) {
         let key = document.querySelector('.'+e.code);
@@ -46,6 +45,7 @@
             e.target.classList.add('active');
         }
         mouseShiftDown(e);
+        inputKeyboard (e);
     }
     
     
@@ -60,16 +60,18 @@
     }
 
     function langSwitch (e) {
-        if (e.ctrlKey && e.code == 'AltLeft') {
+        if (e.ctrlKey && (e.code == 'AltLeft' || e.code == 'AltRight')) {
             let lang = document.querySelectorAll(".eng");
             if (!document.querySelector(".CapsLock").classList.contains("active")) {
                 lang.forEach(element => {
                     if (!element.classList.contains('hidden')) {
+                        localStorage.lang = "ru";
                         element.classList.add('hidden');
                         element.nextElementSibling.classList.remove("hidden");
                         element.nextElementSibling.firstElementChild.classList.remove("hidden");
                         for (let i=0; i<4; i++) { element.children[i].classList.add('hidden') }
                     } else {
+                        localStorage.lang = "eng";
                         element.classList.remove('hidden');
                         element.firstElementChild.classList.remove('hidden');
                         element.nextElementSibling.classList.add("hidden");
@@ -78,12 +80,14 @@
                 })
             } else {
                 lang.forEach(element => {
+                    localStorage.lang = "ru";
                     if (!element.classList.contains('hidden')) {
                         element.classList.add('hidden');
                         element.nextElementSibling.classList.remove("hidden");
                         element.nextElementSibling.firstElementChild.classList.remove("hidden");
                         for (let i=0; i<4; i++) { element.children[i].classList.add('hidden') }
                     } else {
+                        localStorage.lang = "eng";
                         element.classList.remove('hidden');
                         element.firstElementChild.classList.remove('hidden');
                         element.nextElementSibling.classList.add("hidden");
@@ -151,7 +155,7 @@
         }
     }
 
-    function CapsLockUp () {
+    export function CapsLockUp () {
         let lang = document.querySelector(".KeyQ");
         if (!lang.firstElementChild.classList.contains('hidden')) {
             eng.forEach(element => {
