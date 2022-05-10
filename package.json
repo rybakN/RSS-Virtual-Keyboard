@@ -1,0 +1,38 @@
+{
+  "name": "rss-virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "serve": "webpack serve --open",
+    "build": "webpack",
+    "lint": "eslint ./src/assets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rybakN/RSS-Virtual-Keyboard.git"
+  },
+  "author": "rybakN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rybakN/RSS-Virtual-Keyboard/issues"
+  },
+  "homepage": "https://github.com/rybakN/RSS-Virtual-Keyboard#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-webpack-plugin": "^3.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "source-map-loader": "^3.0.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
