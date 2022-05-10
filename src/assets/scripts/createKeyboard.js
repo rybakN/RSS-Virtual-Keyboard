@@ -44,7 +44,7 @@ export const keyboard = [
         {code: 'KeyL', key1: 'l', keyCode: 76, key2: 'L', key3: 'д', key4: 'Д'},
         {code: 'Semicolon', key1: ';', keyCode: 186, key2: ':', key3: 'ж', key4: 'Ж'},
         {code: 'Quote', key1: "'", keyCode: 222, key2: '"', key3: 'э', key4: 'Э'},
-        {code: 'Backslash', key1: `'\'`, keyCode: 220, key2: '|', key3: `'\'`, key4: '/'},
+        {code: 'Backslash', key1: "\"", keyCode: 220, key2: '|', key3: "\"", key4: '/'},
         {code: 'Enter', key1: 'Enter', keyCode: 13, key2: 'Enter', key3: 'Enter', key4: 'Enter'}
     ],
     [
@@ -103,9 +103,9 @@ export function createKeyboard () {
                         <span class="shiftCaps hidden">${keyboard[i][j].key3}</span>
                     </div>
                 </div>`;
-            };
+            }
             content+= `</div>`;
-        };
+        }
     } else if (localStorage.lang == 'ru') {
         localStorage.lang = 'ru';
         for (let i=0; i<5;i++) {
@@ -126,12 +126,12 @@ export function createKeyboard () {
                         <span class="shiftCaps hidden">${keyboard[i][j].key3}</span>
                     </div>
                 </div>`;
-            };
+            }
             content+= `</div>`;
-        };
+        }
     }
     content += `<div class="system">Клавиатура создана в операционной системе Windows</div>
     <div class="lang">Для переключения языка комбинация: ctrl + alt</div>
 </div>`
     BODY.innerHTML += content; 
-};
+}

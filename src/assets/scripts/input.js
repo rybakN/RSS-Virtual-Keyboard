@@ -22,7 +22,6 @@ export function inputKeyboard (e) {
     }
 
     let contains = keyInput.includes(keyCode);
-    let key = document.querySelector("."+keyCode);
     let lang = document.querySelector(".eng").classList.contains("hidden");
     let big = document.querySelector(".ShiftLeft").classList.contains("active") || document.querySelector(".ShiftRight").classList.contains("active") || document.querySelector(".CapsLock").classList.contains("active");
     let small = (document.querySelector(".ShiftLeft").classList.contains("active") || document.querySelector(".ShiftRight").classList.contains("active")) && document.querySelector(".CapsLock").classList.contains("active");

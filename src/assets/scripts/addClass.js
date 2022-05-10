@@ -1,3 +1,3 @@
-const BODY = document.querySelector('body');
+const bodyD = document.querySelector('body');
 
-BODY.classList.add("conteiner");
+bodyD.classList.add("conteiner");
