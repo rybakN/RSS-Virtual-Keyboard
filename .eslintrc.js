@@ -1,6 +1,7 @@
 module.exports = {
     "env": {
-        "browser": true
+        "browser": true,
+        "es6": true
     },
     "extends": [
         "eslint:recommended"
@@ -9,5 +10,9 @@ module.exports = {
         "window": true,
         "document": true,
         "localStorage":true
-      }
+    },
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    }
 }
